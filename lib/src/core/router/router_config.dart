@@ -13,7 +13,7 @@ final router = GoRouter(
     GoRoute(
       name: CreateHabitPage.route,
       path: '/${CreateHabitPage.route}',
-      builder: (context, state) => const CreateHabitPage(),
+      builder: (context, state) => CreateHabitPage(),
     ),
   ],
 );
