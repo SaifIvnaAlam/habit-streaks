@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:habitstreaks/src/features/home/presentation/home_page.dart';
+import 'package:habitstreaks/src/core/router/router_config.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      routerConfig: router,
     );
   }
 }
