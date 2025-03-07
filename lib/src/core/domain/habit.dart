@@ -4,12 +4,12 @@ import 'package:habitstreaks/src/core/domain/base_entity.dart';
 
 class Habit extends BaseEntity {
   String name;
-  String target;
-  String notificationTime;
+  int target;
+  bool allowNotification;
   Habit({
     required this.name,
     required this.target,
-    required this.notificationTime,
+    required this.allowNotification,
     required super.id,
   });
 
@@ -17,14 +17,14 @@ class Habit extends BaseEntity {
   Habit copyWith({
     String? id,
     String? name,
-    String? target,
+    int? target,
     String? notificationTime,
   }) {
     return Habit(
       id: id ?? super.id,
       name: name ?? this.name,
       target: target ?? this.target,
-      notificationTime: notificationTime ?? this.notificationTime,
+      allowNotification: allowNotification ?? allowNotification,
     );
   }
 
@@ -33,7 +33,7 @@ class Habit extends BaseEntity {
     return <String, dynamic>{
       'name': name,
       'target': target,
-      'notificationTime': notificationTime,
+      'notificationTime': allowNotification,
     };
   }
 
@@ -41,8 +41,8 @@ class Habit extends BaseEntity {
     return Habit(
       id: map['id'] as String,
       name: map['name'] as String,
-      target: map['target'] as String,
-      notificationTime: map['notificationTime'] as String,
+      target: map['target'] as int,
+      allowNotification: map['allowNotification'] as bool,
     );
   }
 
@@ -52,15 +52,15 @@ class Habit extends BaseEntity {
   factory Habit.fromJson(String source) => Habit.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Habit(name: $name, target: $target, notificationTime: $notificationTime)';
+  String toString() => 'Habit(name: $name, target: $target, notificationTime: $allowNotification)';
 
   @override
   bool operator ==(covariant Habit other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.target == target && other.notificationTime == notificationTime;
+    return other.name == name && other.target == target && other.allowNotification == allowNotification;
   }
 
   @override
-  int get hashCode => name.hashCode ^ target.hashCode ^ notificationTime.hashCode;
+  int get hashCode => name.hashCode ^ target.hashCode ^ allowNotification.hashCode;
 }

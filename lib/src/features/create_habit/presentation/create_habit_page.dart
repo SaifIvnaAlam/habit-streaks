@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,8 @@ class CreateHabitPage extends StatelessWidget {
   CreateHabitPage({super.key});
   static const String route = 'create_habit_page';
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _targetController = TextEditingController();
+  final TextEditingController _notificationTimer = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocListener<CreateHabitCubit, CreateHabitState>(
@@ -27,10 +30,31 @@ class CreateHabitPage extends StatelessWidget {
                   hintText: "Name",
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: _targetController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: "Target Days",
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text("Allow notification?"), CupertinoSwitch(value: true, onChanged: (_) {})],
+              ),
               Spacer(),
               TextButton(
                 onPressed: () {
-                  context.read<CreateHabitCubit>().createHabit(name: _nameController.text);
+                  context.read<CreateHabitCubit>().createHabit(
+                        name: _nameController.text,
+                        allowNotification: true,
+                        target: int.parse(_targetController.text),
+                      );
                 },
                 child: Text("Create Habit"),
               )
