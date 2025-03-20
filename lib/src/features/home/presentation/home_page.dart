@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 16),
-            buildQuickActions(),
+            QuickActions(),
             const SizedBox(height: 20),
             buildSectionCard(
               title: 'Today’s Tasks',
